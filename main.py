@@ -8,14 +8,14 @@ from boto3.session import Session
 from botocore.exceptions import ClientError
 
 REGION = os.environ.get('AWS_DEFAULT_REGION', 'sa-east-1')
-BUCKET_NAME = os.environ.get('BUCKET_NAME', 'blackdevs-aws')
+BUCKET_NAME = os.environ.get('BUCKET_NAME', 'bucket-s3-file-python-vba')
 
 session = Session(region_name=REGION)
 s3 = session.resource('s3')
 
 # download do arquivo
 try:
-  s3.Bucket(BUCKET_NAME).download_file('s3-file-python-vba/file.json', 'C:\\Users\\julio\\Documents\\Excel-PowerBI\\s3-file-python-vba\\file.json')
+  s3.Bucket(BUCKET_NAME).download_file('file.json', 'C:\\Users\\USERNAME\\Documents\\s3-file-python-vba\\file.json')
 
 except ClientError as e:
   if e.response['Error']['Code'] == "404":
