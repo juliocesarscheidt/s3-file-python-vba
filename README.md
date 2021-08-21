@@ -33,7 +33,7 @@ Public Sub callPythonScript()
     Set objShell = VBA.CreateObject("Wscript.Shell")
 
     'which python
-    PythonExe = """C:\Users\julio\AppData\Local\Programs\Python\Python37-32\python.exe"""
+    PythonExe = """C:\Users\USERNAME\AppData\Local\Programs\Python\Python37-32\python.exe"""
     PythonScript = """C:\Users\USERNAME\Documents\s3-file-python-vba\main.py"""
 
     'call the python script
