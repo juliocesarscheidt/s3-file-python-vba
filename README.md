@@ -22,3 +22,45 @@ https://github.com/VBA-tools/VBA-JSON
 ## Architecture
 
 ![./images/s3-file-python-vba.png](./images/s3-file-python-vba.png)
+
+## VBA script to call python and read the saved JSON file locally
+
+```vba
+Public Sub callPythonScript()
+    Dim objShell As Object
+    Dim PythonExe$, PythonScript$, fileLocalPath$, fileContent$
+    
+    Set objShell = VBA.CreateObject("Wscript.Shell")
+
+    'which python
+    PythonExe = """C:\Users\julio\AppData\Local\Programs\Python\Python37-32\python.exe"""
+    PythonScript = """C:\Users\USERNAME\Documents\s3-file-python-vba\main.py"""
+
+    'call the python script
+    objShell.Run PythonExe & PythonScript, 2, True
+    
+    fileLocalPath = "C:\Users\USERNAME\Documents\s3-file-python-vba\file.json"
+    fileContent = READ_FILE_CONTENT(fileLocalPath)
+
+    Dim Json As Object
+    Set Json = JsonConverter.ParseJson(fileContent)
+
+    'delete the local file
+    Kill fileLocalPath
+
+    MsgBox Json("bitcoin")
+End Sub
+
+Public Function READ_FILE_CONTENT(ByVal fileName$) As String
+    Dim textline$, text$
+    
+    Open fileName For Input As #1
+    Do Until EOF(1)
+        Line Input #1, textline
+        text = text & textline
+    Loop
+    Close #1
+    
+    READ_FILE_CONTENT = text
+End Function
+```
