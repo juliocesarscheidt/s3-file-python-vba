@@ -18,13 +18,13 @@ try:
   s3.Bucket(BUCKET_NAME).download_file('file.json', 'C:\\Users\\USERNAME\\Documents\\s3-file-python-vba\\file.json')
 
 except ClientError as e:
-  if e.response['Error']['Code'] == "404":
-    print("O arquivo não existe")
+  if e.response['Error']['Code'] == '404':
+    print('O arquivo não existe')
   else:
     raise
 
 # lê o arquivo
-with open(f"./file.json", "r") as file:
+with open('C:\\Users\\USERNAME\\Documents\\s3-file-python-vba\\file.json', 'r') as file:
   text = file.read()
   print(json.loads(text))
   file.close()

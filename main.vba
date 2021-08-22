@@ -11,8 +11,8 @@ Public Sub callPythonScript()
     Set objShell = VBA.CreateObject("Wscript.Shell")
 
     'which python
-    PythonExe = """C:\Users\julio\AppData\Local\Programs\Python\Python37-32\python.exe"""
-    PythonScript = """C:\Users\julio\Documents\Excel-PowerBI\s3-file-python-vba\main.py"""
+    PythonExe = """C:\Users\USERNAME\AppData\Local\Programs\Python\Python37-32\python.exe"""
+    PythonScript = """C:\Users\USERNAME\Documents\s3-file-python-vba\main.py"""
 
     'executa o script python
     objShell.Run PythonExe & PythonScript, 2, True
@@ -21,7 +21,7 @@ End Sub
 Public Sub callReadFile()
     Dim fileLocalPath$, fileContent$
 
-    fileLocalPath = "C:\Users\julio\Documents\Excel-PowerBI\s3-file-python-vba\file.json"
+    fileLocalPath = "C:\Users\USERNAME\Documents\s3-file-python-vba\file.json"
     fileContent = READ_FILE_CONTENT(fileLocalPath)
     'MsgBox fileContent
 
