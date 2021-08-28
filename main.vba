@@ -7,7 +7,9 @@ End Sub
 Public Sub callPythonScript()
     Dim objShell As Object
     Dim PythonExe$, PythonScript$
-
+    
+    On Error GoTo ErrorHandler
+    
     Set objShell = VBA.CreateObject("Wscript.Shell")
 
     'which python
@@ -16,6 +18,12 @@ Public Sub callPythonScript()
 
     'executa o script python
     objShell.Run PythonExe & PythonScript, 2, True
+
+ErrorHandler:
+    If Err.Number <> 0 Then
+        Msg = "[ERRO] Número: " & Str(Err.Number) & " foi gerado por " & Err.Source & Chr(13) & Chr(13) & Err.Description
+        MsgBox Msg, vbMsgBoxHelpButton, "Error", Err.HelpFile, Err.HelpContext
+    End If
 End Sub
 
 Public Sub callReadFile()
